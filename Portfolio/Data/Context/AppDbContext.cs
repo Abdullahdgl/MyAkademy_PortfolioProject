@@ -1,0 +1,27 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Portfolio.Data.Entites;
+
+namespace Portfolio.Data.Context
+{
+	public class AppDbContext :DbContext
+	{
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseSqlServer("server=DESKTOP-7UIUM7T\\SQLEXPRESS; database=PortfolioDb; integrated security=true;trustServerCertificate=true;");
+		}
+
+		public DbSet<About> Abouts { get; set; }
+		public DbSet<Banner> Banners { get; set; }
+		public DbSet<ContactInfo> ContactInfos { get; set; }
+		public DbSet<Education> Educations { get; set; }
+		public DbSet<Experience> experiences { get; set; }
+		public DbSet<Project> Projects { get; set; }
+		public DbSet<Service> Services { get; set; }
+		public DbSet<Skill> Skills { get; set; }
+		public DbSet<TechStack> TechStacks { get; set; }
+		public DbSet<Testimonial> Testimonials { get; set; }
+		public DbSet<ProjectTechStack> ProjectTechStacks { get; set; }
+
+
+	}
+}
