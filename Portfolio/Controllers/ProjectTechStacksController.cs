@@ -15,9 +15,12 @@ namespace Portfolio.Controllers
 			_context = context;
 		}
 
+		//eager loading:Herşeyi tek seferde getirmek için kullanılır. yani birden fazla tabloyu tek seferde getirmek için kullanılır. lazy loading: sadece ihtiyacımız olan veriyi getirmek için kullanılır. yani bir tabloyu getirmek için kullanılır. explicit loading: sadece ihtiyacımız olan veriyi getirmek için kullanılır. yani bir tabloyu getirmek için kullanılır. SQL deki inner join gibi düşünebiliriz. yani bir tabloyu getirmek için kullanılır.
 		public IActionResult Index()
 		{
-			var projectTechStacks = _context.ProjectTechStacks.Include(x => x.Project).Include(y => y.TechStack).ToList();
+			var projectTechStacks = _context.ProjectTechStacks
+				.Include(x => x.Project)
+				.Include(y => y.TechStack).ToList();
 
 			return View(projectTechStacks);
 		}
