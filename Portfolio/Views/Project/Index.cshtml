@@ -24,7 +24,7 @@
             <td><a href="@item.GithubUrl" target="_blank" class="btn btn-outline-dark"> Github Url</a></td>
             <td>
 
-                <button onclick="DeleteProject(@item.Id)" class="btn btn-outline-danger">Sil</button>
+                <button onclick="deleteProject(@item.Id)" class="btn btn-outline-danger">Sil</button>
                 <a href="/Project/UpdateProject/@item.Id" class="btn btn-outline-info">Güncelle</a>
             </td>
         </tr>
@@ -37,7 +37,7 @@
 
 <script>
 
-          function DeleteProject(id){
+          function deleteProject(id){
                 Swal.fire({
       title: "Silmek istediğinize Emin misiniz?",
       text: "Bu işlemi Geri Alamazsınız",
@@ -46,11 +46,11 @@
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Evet, Sil!",
-      cancelButtonText:"iptal"
+      cancelButtonText:"ptal"
     }).then((result) => {
       if (result.isConfirmed)
 
-          Window.location.href = "/Project/DeleteProject" + id;
+          window.location.href = "/Project/DeleteProject/" + id;
 
     });
 
