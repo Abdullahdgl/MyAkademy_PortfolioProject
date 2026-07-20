@@ -1,4 +1,4 @@
-﻿@model List<ProjectTechStack>
+﻿@model List<Project>
 @{
     ViewData["Title"] = "Proje Teknolojileri";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
@@ -7,9 +7,8 @@
 
 <table class="table table-hover table-bordered" >
     <tr>
-        <th>#</th>
+        <th>#</th> 
         <th>Proje Adı</th>
-        <th>Teknoloji Adı</th>
         <th>Kullanılan Teknolojiler</th>
     </tr>
     @foreach (var item in Model)
@@ -17,9 +16,9 @@
     count++;
         <tr>
             <td>@count</td>
-            <td>@item.Project.Name</td>
-            <td>@item.TechStack.Name</td>
-            <td>@item.TechStack.Name</td>
+            <td>@item.Name</td>
+            <td>@string.Join(", ", item.ProjectTechStacks.Select(x => x.TechStack.Name))</td>
+
         </tr>
 }
 </table>

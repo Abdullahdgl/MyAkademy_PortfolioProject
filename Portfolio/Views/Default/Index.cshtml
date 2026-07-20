@@ -3,6 +3,8 @@
     Layout = null;
 }
 
+
+
 <!DOCTYPE html>
 
 <html class="dark scroll-smooth" lang="en">
@@ -228,6 +230,7 @@
         </section>
         <!-- About Section -->
         @await Component.InvokeAsync("_DefaultAbout")
+
         <!-- Experience & Education Section -->
         <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative" id="experience">
             <div class="max-w-container-max mx-auto">
@@ -377,7 +380,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>  
         <!-- Testimonials Section -->
         <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative" id="testimonials">
             <div class="max-w-container-max mx-auto">
@@ -443,11 +446,13 @@
         <!-- Contact Section -->
         <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative bg-surface-container-lowest" id="contact">
             <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
-               
+
                 @await Component.InvokeAsync("_DefaultContectInfo")
-                @await Component.InvokeAsync("_DefaultUserMessage") 
+                @await Component.InvokeAsync("_DefaultUserMessage")
+                                              
 
 
+                
 
 
             </div>
@@ -466,6 +471,9 @@
             </div>
         </footer>
     </main>
+
+    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slider = document.getElementById('slider-container');
@@ -491,6 +499,7 @@
             }
         });
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

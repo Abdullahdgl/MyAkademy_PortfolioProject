@@ -5,18 +5,34 @@
 }
 
 <form method="post">  
-    <labe>Proje</labe>
-    <select class="form-control" asp-for="ProjectId" asp-items="@ViewBag.projects" required>
-        <option selected disabale>-- Proje Seçiniz --</option>
+    <labe>Proje</labe><br />
+    <select class="form-control-sd" asp-for="ProjectId" asp-items="@ViewBag.projects" required>
+        <option selected disabale >-- Proje Seçiniz --</option>
     </select>
 
-    <label>Teknoloji</label>
+    <br />
+
+@*     <label>Teknoloji</label>
     <select class="form-control" asp-for="TechStackId" asp-items="@ViewBag.techStacks">
         <option selected disabale>-- Teknoloji Seçiniz --</option>
+    </select> *@
+
+    <label>Teknolojiler</label><br />
+    <select required class="form-control-plaintext"
+            name="SelectedTechStackIds"
+            asp-items="@ViewBag.techStacks"
+            multiple
+             aria-checked="mixed" 
+            size="12" >
     </select>
+    <br /><br />
+    <small class="text-danger">Ctrl ile birden fazla teknoloji seçebilirsin.</small>
+    <br /><br />
+
     <br />
 
     <button class="btn btn-outline-dark"> Kaydet </button>
+ 
 
 </form>
 

@@ -7,9 +7,7 @@
 
 @foreach (var item in Model)
 {
-
-
-
+  
     <div>
         <h2 class="font-headline-md text-headline-md text-on-background mb-4">Bana aşağıdaki iletişim bilgilerinden ulaşabilirsiniz.</h2>
         <p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg max-w-md">Birlikte çalışabileceğimiz freelance işlere açığım istediğiniz zaman bana ulaşabilirsiniz.</p>
@@ -39,7 +37,7 @@
                 <div>
                     <h4 class="font-label-sm text-label-sm text-on-surface-variant">Sosyal Medya Hesaplarım</h4>
                     <div class="flex gap-4 mt-1">
-                      @*   <a class="text-on-background hover:text-primary transition-colors" href="@item.LinkedinUrl" target="_blank">LinkedIn</a> *@
+                        <a class="text-on-background hover:text-primary transition-colors" href="@item.linkedinUrl" target="_blank">LinkedIn</a>
                         <a class="text-on-background hover:text-primary transition-colors" href="@item.GithubUrl" target="_blank">GitHub</a>
 
                     </div>
