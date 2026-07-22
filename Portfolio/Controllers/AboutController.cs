@@ -35,8 +35,17 @@ namespace Portfolio.Controllers
 		public IActionResult CreateAbout(About about)
 		{
 		 	_context.Abouts.Add(about);
-			_context.SaveChanges();
-			return RedirectToAction("Index");
+			int result = _context.SaveChanges();
+			if(result>0)
+			{
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				ModelState.AddModelError("", "About eklenirken bir hata oluştu.");
+				return View(about);
+			}
+
 		}
 
 		public IActionResult UpdateAbout(int id)
