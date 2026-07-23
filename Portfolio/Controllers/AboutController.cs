@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.Data.Context;
 using Portfolio.Data.Entites;
 
 namespace Portfolio.Controllers
 {
+
 	public class AboutController : Controller
 	{
 

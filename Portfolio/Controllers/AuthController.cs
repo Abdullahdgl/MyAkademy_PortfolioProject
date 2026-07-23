@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Data.Context;
 using Portfolio.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Portfolio.Controllers
 {
+	[AllowAnonymous]
 	public class AuthController : Controller
 	{
 		private readonly AppDbContext _context;
@@ -59,5 +61,14 @@ namespace Portfolio.Controllers
 			return RedirectToAction("Index","About");
 
 		}
+
+		public async Task<IActionResult> Logout()
+		{
+			HttpContext.Session.Remove("FullName");
+			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+			return RedirectToAction("Index", "Default");
+		}
+
+
 	}
 }
