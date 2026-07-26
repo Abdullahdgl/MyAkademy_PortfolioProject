@@ -1,0 +1,33 @@
+﻿@model List<Education>
+
+
+@{
+    Layout = null;
+}
+
+
+<div class="max-w-5xl mx-auto">
+    <h3 class="font-body-lg text-body-lg font-semibold text-on-background mb-8 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">school</span>
+        Eğitimlerim
+    </h3>
+    <div class="relative border-l border-outline-variant/30 pl-8 space-y-12">
+        @foreach (var education in Model)
+        {
+            <div class="relative">
+                <span class="absolute -left-[38px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-background"></span>
+                <h4 class="font-semibold text-xl text-on-background">
+                    @education.Department
+                </h4>
+                <p class="text-primary font-medium mb-3">
+                    @education.StartYear | @education.GraduationYear
+                </p>
+                <p class="text-on-surface-variant leading-7">
+                    @education.Description
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+

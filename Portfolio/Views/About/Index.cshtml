@@ -10,6 +10,8 @@
 
 <section class="col-span-12 lg:col-span-12">
 
+
+
     @if(Model != null)
     {
            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl custom-shadow overflow-hidden">
@@ -28,7 +30,8 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-surface-container text-on-surface-variant border-b border-outline-variant">
-                        
+                         
+                            <th class="px-lg py-md font-label-sm uppercase tracking-wider">Görsel</th>
                         <th class="px-lg py-md font-label-sm uppercase tracking-wider">Başlık</th>
                         <th class="px-lg py-md font-label-sm uppercase tracking-wider">Açıklama</th>
                      @*    <th class="px-lg py-md font-label-sm uppercase tracking-wider">Durum</th> *@
@@ -40,6 +43,7 @@
                         <td class="px-lg py-md">
                             <div class="flex items-center gap-md">
                                 <img class="w-10 h-10 rounded-lg object-cover border border-outline-variant" data-alt="@Model.Title" src="@Model.ImageUrl" />
+
                                 <span class="font-label-md text-on-surface">@Model.Title</span>
                             </div>
                         </td>
@@ -90,6 +94,8 @@
 
         
     }
+
+
     else
     {
         <div class="alert alert-info"><strong>Henüz Hakkımızda bilgisi eklenmemiş.</strong></div>

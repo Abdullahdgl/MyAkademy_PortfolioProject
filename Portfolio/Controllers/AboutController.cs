@@ -22,7 +22,8 @@ namespace Portfolio.Controllers
 
 
 
-		public IActionResult Index() // index içerisindeki bizim amacımız neydi verileri listelemek/getirmek.
+		public IActionResult Index() 
+			// index içerisindeki bizim amacımız neydi verileri listelemek/getirmek.
 		{
 			var about = _context.Abouts.FirstOrDefault(); // burdaki ilk veriyi yani tek bir değer getirmek isteriz.
 			return View(about);

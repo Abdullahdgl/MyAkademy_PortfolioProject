@@ -19,6 +19,7 @@ namespace Portfolio.Controllers
 		{
 			return View();
 		}
+		
 
 		[HttpPost]
 		public IActionResult SendMessage(UserMessage userMessage)
