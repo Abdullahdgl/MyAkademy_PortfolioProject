@@ -18,14 +18,14 @@ namespace Portfolio.Controllers
 			_context = context;
 		}
 
-		//sadece bu sınıf üzerinden erişilebilen bir fieldir. yani controller sınıfından bir index sayfası ayağı kalktığı zaman  biz bir constractot oluşturup burası otomatik olarak ayağı kaldırmak isteteceğimiz bir alandır. aslında constractor oluştumamızdaki mahiyet.
+
 
 
 
 		public IActionResult Index() 
-			// index içerisindeki bizim amacımız neydi verileri listelemek/getirmek.
+			
 		{
-			var about = _context.Abouts.FirstOrDefault(); // burdaki ilk veriyi yani tek bir değer getirmek isteriz.
+			var about = _context.Abouts.FirstOrDefault(); 
 			return View(about);
 		}
 

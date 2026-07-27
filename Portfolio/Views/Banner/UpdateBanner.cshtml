@@ -1,0 +1,22 @@
+﻿@model Banner
+@{
+    ViewData["Title"] = "Banner Güncelle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+    <label>Görsel Url</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" required />
+    <br />
+
+    <label>Başlık</label>
+    <input type="text" asp-for="Title" class="form-control" required />
+    <br />
+    <label>Açıklama</label>
+    <textarea type="text" asp-for="Description" class="form-control" rows="5" required> </textarea>
+    <br />
+
+    <span class="text-danger">@Html.ValidationSummary()</span>
+
+    <button class="btn btn-outline-dark">Güncelle</button>
+</form>
