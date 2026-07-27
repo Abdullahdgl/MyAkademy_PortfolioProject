@@ -1,8 +1,3 @@
-﻿@model LoginViewModel
-@{
-    Layout = null;
-}
-
 <!doctype html>
 <html lang="tr">
 <head>
@@ -96,26 +91,23 @@
 					ABDULLAH <span>DAĞLI</span>
 				</div>
 
-				
-
-				<form method="post">
+				<form>
 
 					<div class="mb-3">
 
-						<input type="text" asp-for="UserName" class="form-control" />
-						<span class="text-danger" asp-validation-for="UserName"></span>
+						<input type="text"
+							   class="form-control"
+							   placeholder="Kullanıcı Adı">
 
 					</div>
 
 					<div class="mb-4">
 
-						<input type="password" asp-for="Password" class="form-control" />
-						<span class="text-danger" asp-validation-for="Password"></span>
+						<input type="password"
+							   class="form-control"
+							   placeholder="Şifre">
 
 					</div>
-
-
-					<span class="text-danger">@Html.ValidationSummary(excludePropertyErrors: true)</span>
 
 					<div class="d-grid">
 
@@ -135,7 +127,3 @@
 
 </body>
 </html>
-
-
-
-
