@@ -1,0 +1,43 @@
+﻿@model Education
+@{
+    ViewData["Title"] = "Eğitim Oluştur.";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+
+
+<form method="post">
+    <label>Üniversite Adı</label>
+    <input type="text" asp-for="SchoolName" class="form-control" required />
+    <br />
+
+    <label>Bölüm</label>
+    <input type="text" asp-for="Department" class="form-control" required />
+    <br />
+    <label>Puan - Gano</label>
+    <textarea type="text" asp-for="GPA" class="form-control" rows="5" required> </textarea>
+    <br />
+   <div>
+
+        <label class="form-label">Başlama Tarihi</label>
+        <input type="text" asp-for="StartYear" class="form-input" required />
+   </div>
+
+    
+    <br />
+    <div>
+
+        <label class="form-label">Bitirme Tarihi</label>
+        <input type="text" asp-for="GraduationYear" class="form-input" required />
+    </div>
+   
+    <br />
+    <label class="form-label">Açıklama</label>
+    <textarea asp-for="Description" class="form-input" rows="5" required></textarea>
+
+    <span class="text-danger">@Html.ValidationSummary()</span>
+
+    <button class="btn btn-outline-dark">Kaydet</button>
+</form>
+
+

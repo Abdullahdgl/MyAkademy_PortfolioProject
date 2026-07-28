@@ -1,11 +1,11 @@
 ﻿@model Experience
-
 @{
-    ViewData["Title"] = "Deneyim Ekle";
+    ViewData["Title"] = "Deneyim Güncelle";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Update</h1>
+
 
 <form method="post">
     <label>Ünvan</label>
@@ -32,9 +32,10 @@
         <input type="text" asp-for="EndYear" class="form-input" required />
     </div>
 
-
+   
 
     <span class="text-danger">@Html.ValidationSummary()</span>
 
-    <button class="btn btn-outline-dark">Ekle</button>
+    <button class="btn btn-outline-dark">Güncelle</button>
 </form>
+

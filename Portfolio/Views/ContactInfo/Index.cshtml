@@ -1,65 +1,142 @@
 ﻿@model ContactInfo
 @{
-    ViewData["Title"] = "İletişim Bilgileri.";
+    ViewData["Title"] = "İletişim Bilgileri";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
-<form method="post" asp-controller="ContactInfo" asp-action="UpdateContactInfo">
+<style>
+    /* Form Ana Konfigürasyonu */
+    .custom-form {
+        max-width: 550px;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid rgba(229, 231, 235, 0.8);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        margin-top: 1rem;
+    }
+
+        /* Her Bir Input Grubu */
+        .custom-form .form-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        /* Label Alanı */
+        .custom-form .form-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+            .custom-form .form-label i {
+                color: #4f46e5;
+                font-size: 0.95rem;
+            }
+
+        /* Input Kutuları */
+        .custom-form .form-input {
+            width: 100% !important;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            background-color: #ffffff;
+            transition: all 0.2s ease-in-out;
+            box-sizing: border-box !important;
+        }
+
+            .custom-form .form-input:focus {
+                border-color: #2563eb;
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            }
+
+    /* Success Alert Stili */
+    .alert-message.alert-success {
+        max-width: 550px;
+        padding: 0.85rem 1rem;
+        background-color: #d1fae5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Buton Alanı */
+    .custom-form .form-actions {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .custom-form .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #2563eb;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+        .custom-form .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+</style>
+
+@if (ViewBag.Durum != null)
+{
+    <div class="alert-message alert-success">@ViewBag.Durum</div>
+}
+
+<form method="post" class="glass-card custom-form">
     <input type="hidden" asp-for="Id" />
-    <header class="mb-10 flex flex-col">
-        <div>
-            <h2 class="text-display-lg text-on-surface">
-                İletişim Bilgileri
-            </h2>
-            <p class="text-body-lg text-on-surface-variant">
-                Ziyaretçilerin size ulaşabileceği bilgileri yönetin.
-            </p>
-        </div>
-        <button type="submit" class="self-end mt-1 inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-lg whitespace-nowrap hover:shadow-lg transition-all active:scale-95">
-            <span class="material-symbols-outlined text-[21px]">save</span>
-            <span>Değişiklikleri Kaydet</span>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="Email">
+            <i class="fa-solid fa-envelope"></i> Email Adresi
+        </label>
+        <input type="email" class="form-input" asp-for="Email" placeholder="ornek@email.com" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="Address">
+            <i class="fa-solid fa-location-dot"></i> Adres
+        </label>
+        <input type="text" class="form-input" asp-for="Address" placeholder="Şehir, İlçe..." required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="linkedinUrl">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn URL
+        </label>
+        <input type="url" class="form-input" asp-for="linkedinUrl" placeholder="https://linkedin.com/in/..." required />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="GithubUrl">
+            <i class="fa-brands fa-github"></i> GitHub URL
+        </label>
+        <input type="url" class="form-input" asp-for="GithubUrl" placeholder="https://github.com/..." required />
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Kaydet
         </button>
-    </header>
-    <div class="max-w-5xl mx-auto px-3 py-4 md:px-4 md:py-5 xl:px-6 xl:py-6">
-        <div class="w-full space-y-4">
-            <div class="w-full rounded-xl border border-outline-variant bg-surface-container-lowest p-4 md:p-6">
-                <div class="mb-5 flex items-center gap-2 text-primary">
-                    <span class="material-symbols-outlined text-[24px]">info</span>
-                    <h3 class="font-h2 text-h2">E-Posta &amp; Konum</h3>
-                </div>
-                <div class="grid grid-cols-1 gap-5 md:grid-cols-1">
-                    <div class="space-y-2">
-                        <label class="block font-label-md text-label-md text-on-surface">E-posta Adresi</label>
-                        <input type="email" asp-for="Email" placeholder="E-Posta adresini girin" class="w-full rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                    </div>
-                    <div class="space-y-2 md:col-span-1">
-                        <label class="block font-label-md text-label-md text-on-surface">Adres</label>
-                        <textarea asp-for="Address" rows="2" placeholder="Adres girin" class="w-full resize-none rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20">Maslak, Büyükdere Cd. No:243, 34398 Sarıyer/İstanbul</textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full rounded-xl border border-outline-variant bg-surface-container-lowest p-4 md:p-6">
-                <div class="mb-5 flex items-center gap-2 text-primary">
-                    <span class="material-symbols-outlined text-[24px]">share</span>
-                    <h3 class="font-h2 text-h2">Sosyal Medya Hesapları</h3>
-                </div>
-                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <div class="space-y-2">
-                        <label class="block font-label-md text-label-md text-on-surface">LinkedinURL</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-on-surface-variant">code_blocks</span>
-                            <input asp-for="@Model.linkedinUrl" type="url" placeholder="Linkedin adresini girin" class="w-full rounded-lg border border-outline-variant bg-surface py-2.5 pl-10 pr-4 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="block font-label-md text-label-md text-on-surface">GitHubURL</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-on-surface-variant">code_blocks</span>
-                            <input asp-for="@Model.GithubUrl" type="url" placeholder="GitHub adresini girin" class="w-full rounded-lg border border-outline-variant bg-surface py-2.5 pl-10 pr-4 text-body-lg text-on-surface outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </form>

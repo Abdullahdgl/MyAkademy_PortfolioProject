@@ -1,11 +1,10 @@
-﻿
-@model List<Experience>
-
+﻿@model List<Service>
 @{
-    ViewData["Title"] = "Deneyimlerim.";
+    ViewData["Title"] = "Hizmetlerim.";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
+<h1>Index</h1>
 
 
 
@@ -13,11 +12,9 @@
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
+                <th>İkon</th>
                 <th>Başlık</th>
                 <th>Açıklama</th>
-                <th>Şirket</th>
-                <th>Başlama Yılı</th>
-                <th>Bitme Yılı</th>
                 <th>İşlemler</th>
             </tr>
         </thead>
@@ -27,16 +24,14 @@
             {
                 <tr>
 
+                    <td>@item.Icon</td>
                     <td>@item.Title</td>
                     <td>@item.Description</td>
-                    <td>@item.Company</td>
-                    <td>@item.StartYear</td>
-                    <td>@item.EndYear</td>
                     <td>
                         <div class="action-btns">
-                            <a href="/Experience/Update/@item.Id" class="btn btn-outline-info" title="Düzenle"><i class="fa-solid fa-pen">Düzenle</i></a>
+                            <a href="/Service/UpdateService/@item.Id" class="btn btn-outline-info" title="Düzenle"><i class="fa-solid fa-pen">Düzenle</i></a>
 
-                            <button onclick="Delete(@item.Id)" class="btn btn-outline-danger">Sil</button>
+                            <button onclick="DeleteService(@item.Id)" class="btn btn-outline-danger">Sil</button>
                         </div>
                     </td>
                 </tr>
@@ -44,11 +39,11 @@
         </tbody>
     </table>
     <div class="form-actions">
-        <div class="form-control"><a href="/Experience/Create/" class="btn btn-primary">Deneyim Ekle</a></div>
+        <div class="form-control"><a href="/Service/CreatService/" class="btn btn-primary">Hizmet Ekle</a></div>
     </div>
 
     <script>
-        function Delete(id){
+        function deleteService(id){
             Swal.fire({
               title: "Silmek istediğinize emin misiniz?",
               text: "Bu işlem geri alınamaz",
@@ -60,7 +55,7 @@
               cancelButtonText: "İptal",
             }).then((result) => {
               if (result.isConfirmed)
-              window.location.href="/Experience/Delete/"+id;
+              window.location.href="/Service/DeleteService/"+id;
             });
         }
     </script>

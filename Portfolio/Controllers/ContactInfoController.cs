@@ -13,47 +13,30 @@ namespace Portfolio.Controllers
 			_context = context;
 		}
 
+		[HttpGet]
 		public IActionResult Index()
 		{
-			var value = _context.ContactInfos.FirstOrDefault();
-			return View(value);
-		}
-
-		[HttpGet]
-		public IActionResult CreateAbout()
-		{
-			return View();
+			var contact = _context.ContactInfos.Find(1);
+			return View(contact);
 		}
 
 		[HttpPost]
-		public IActionResult CreateContactInfo(ContactInfo contactInfo)
-		{
-			_context.ContactInfos.Add(contactInfo);
-			_context.SaveChanges();
-			return RedirectToAction("Index", "ContactInfo");
-		}
-
-		[HttpGet]
-		public IActionResult UpdateContactInfo(int id)
-		{
-			var value = _context.ContactInfos.Find(id);
-			return View(value);
-		}
-
-		[HttpPost]
-		public IActionResult UpdateContactInfo(ContactInfo contactInfo)
+		public IActionResult Index(ContactInfo contactInfo)
 		{
 			_context.ContactInfos.Update(contactInfo);
-			_context.SaveChanges();
-			return RedirectToAction("Index", "ContactInfo");
-		}
 
-		public IActionResult DeleteContactInfo(int id)
-		{
-			var value = _context.ContactInfos.Find(id);
-			_context.ContactInfos.Remove(value);
-			_context.SaveChanges();
-			return RedirectToAction("Index", "ContactInfo");
+			int sonuc = _context.SaveChanges();
+
+			if (sonuc > 0)
+			{
+				ViewBag.Durum = "İletişim Bilgiler başarıyla güncellendi.";
+			}
+			else
+			{
+				ViewBag.Durum = "Güncelleme sırasında bir değişiklik yapılmadı.";
+			}
+
+			return View();
 		}
 	}
 }

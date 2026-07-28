@@ -1,23 +1,22 @@
 ﻿
-@model List<Experience>
+@model List<Education>
 
 @{
-    ViewData["Title"] = "Deneyimlerim.";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
-
-
 
 
 <div class="glass-card">
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th>Başlık</th>
-                <th>Açıklama</th>
-                <th>Şirket</th>
+                <th>Okul</th>
+                <th>Bölüm</th>
+                <th>Puan</th>
                 <th>Başlama Yılı</th>
-                <th>Bitme Yılı</th>
+                <th>Mezuniyet Yılı</th>
+                <th>Açıklama</th>
                 <th>İşlemler</th>
             </tr>
         </thead>
@@ -26,29 +25,30 @@
             @foreach (var item in Model)
             {
                 <tr>
-
-                    <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@item.Company</td>
+                    <td>@item.SchoolName</td>
+                    <td>@item.Department</td>
+                    <td>@item.GPA</td>
                     <td>@item.StartYear</td>
-                    <td>@item.EndYear</td>
+                    <td>@item.GraduationYear</td>
+                    <td>@item.Description</td>
                     <td>
                         <div class="action-btns">
-                            <a href="/Experience/Update/@item.Id" class="btn btn-outline-info" title="Düzenle"><i class="fa-solid fa-pen">Düzenle</i></a>
+                            <a href="/Education/UpdateEducation/@item.Id" class="btn btn-outline-info" title="Düzenle"><i class="fa-solid fa-pen">Düzenle</i></a>
 
-                            <button onclick="Delete(@item.Id)" class="btn btn-outline-danger">Sil</button>
+                            <button onclick="DeleteEducation(@item.Id)" class="btn btn-outline-danger">Sil</button>
                         </div>
                     </td>
                 </tr>
             }
+
         </tbody>
     </table>
     <div class="form-actions">
-        <div class="form-control"><a href="/Experience/Create/" class="btn btn-primary">Deneyim Ekle</a></div>
+        <div class="form-control"><a href="/Education/CreatEducation" class="btn btn-primary">Eğitim Ekle</a></div>
     </div>
 
     <script>
-        function Delete(id){
+        function DeleteEducation(id){
             Swal.fire({
               title: "Silmek istediğinize emin misiniz?",
               text: "Bu işlem geri alınamaz",
@@ -60,7 +60,7 @@
               cancelButtonText: "İptal",
             }).then((result) => {
               if (result.isConfirmed)
-              window.location.href="/Experience/Delete/"+id;
+              window.location.href="/Education/DeleteEducation/"+id;
             });
         }
     </script>
