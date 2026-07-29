@@ -1,0 +1,332 @@
+﻿@model List<UserMessage>
+@{
+    ViewData["Title"] = "Mesajlarım";
+    Layout            = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<header class="mb-10 flex flex-col">
+    <div>
+        <h2 class="text-display-lg text-on-surface">
+            Mesajlar
+        </h2>
+
+        <p class="text-body-lg text-on-surface-variant">
+            Mesaj alanını buradan yönetebilirsiniz
+        </p>
+    </div>
+</header>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-surface-container-low border-b border-outline-variant">
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold">Gönderen</th>
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold">Email</th>
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold">Konu</th>
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold">Tarih</th>
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold">Durum</th>
+                    <th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant font-semibold text-right">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant">
+                @foreach (var userMessage in Model)
+                {
+                    <tr class="group hover:bg-surface-container transition-colors cursor-pointer" data-id="@userMessage." data-name="@userMessage.Name" data-email="@userMessage.Email" data-subject="İş Teklifi" data-content="@userMessage.MessageBody" data-date="@userMessage.Email" data-is-read="@userMessage.IsRead.ToString().ToLower()" onclick="openMessage(this)">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed text-sm">
+                                    @userMessage.MessageBody
+                                </div>
+                                <span class="message-text font-label-lg text-label-lg text-on-surface @(userMessage.IsRead ? "" : "message-unread font-bold")">
+                                    @userMessage.Name
+                                </span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">
+                            @userMessage.Email
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                                <span class="message-text font-label-lg text-label-lg text-on-surface @(userMessage.IsRead ? "" : "message-unread font-bold")">
+                                    İş Teklifi
+                                </span>
+                                <span class="font-body-md text-body-md text-on-surface-variant truncate max-w-[200px]">
+                                    @(userMessage.MessageBody?.Length >= 40 ? userMessage.MessageBody.Substring(0, 40) + "..." : userMessage.MessageBody)
+                            </span>
+                        </div>
+                    </td>
+
+                        <td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant whitespace-nowrap">
+                            @userMessage.IsRead
+                        </td>
+                        <td class="px-6 py-4">
+                            <button type="button"
+                                    onclick="event.stopPropagation(); toggleStatus(this.closest('tr'))"
+                                    class="message-status px-3 py-1 rounded-full text-label-sm font-label-sm font-bold border @(userMessage.IsRead ? "bg-surface-container-high text-on-surface-variant border-outline-variant" : "bg-primary/10 text-primary border-primary/20")">
+                                @(userMessage.IsRead ? "Okundu" : "Okunmadı")
+                            </button>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="/UserMessage/Delete/@userMessage.Id"
+                                   class="p-2 hover:bg-error-container rounded-lg text-error transition-colors"
+                                   title="Sil"
+                                   onclick="event.stopPropagation()">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between">
+            @if (ViewBag.SelectedStatus == null)
+            {
+                <span class="font-body-md text-body-md text-on-surface-variant">
+                    Toplam Mesaj: @ViewBag.UserMessageCount
+                </span>
+            }
+            @if (ViewBag.SelectedStatus == true)
+            {
+                <span class="font-body-md text-body-md text-on-surface-variant">
+                    Toplam Okunan Mesaj: @ViewBag.TotalReadMessage
+                </span>
+            }
+            @if (ViewBag.SelectedStatus == false)
+            {
+                <span class="font-body-md text-body-md text-on-surface-variant">
+                    Toplam Oknumayan Mesaj: @ViewBag.TotalUnreadMessage
+                </span>
+            }
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-outline">
+                filter_alt
+            </span>
+            <form method="get">
+                <select name="isRead" onchange="this.form.submit()">
+
+                    @if (ViewBag.SelectedStatus == null)
+                    {
+                        <option value="" selected>Tüm Mesajlar</option>
+                    }
+                    else
+                    {
+                        <option value="">Tüm Mesajlar</option>
+                    }
+
+                    @if (ViewBag.SelectedStatus == true)
+                    {
+                        <option value="true" selected>Okundu</option>
+                    }
+                    else
+                    {
+                        <option value="true">Okundu</option>
+                    }
+
+                    @if (ViewBag.SelectedStatus == false)
+                    {
+                        <option value="false" selected>Okunmadı</option>
+                    }
+                    else
+                    {
+                        <option value="false">Okunmadı</option>
+                    }
+
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="drawerOverlay"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0"
+     onclick="closeDrawer()">
+</div>
+
+<div id="messageDrawer"
+     class="fixed right-0 top-0 h-full w-full max-w-md bg-surface-container-lowest z-[60] transform translate-x-full drawer-transition shadow-2xl flex flex-col">
+
+    <div class="p-6 border-b border-outline-variant flex items-center justify-between">
+        <h4 class="font-title-lg text-title-lg text-on-surface">
+            Mesaj Detayı
+        </h4>
+
+        <button type="button"
+                class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-outline"
+                onclick="closeDrawer()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <div class="flex-grow overflow-y-auto p-6">
+        <div class="mb-8">
+            <div class="flex items-center gap-4 mb-6">
+                <div id="drawerInitials"
+                     class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">
+                    AY
+                </div>
+                <div>
+                    <h5 id="drawerName"
+                        class="font-title-md text-title-md text-on-surface">
+                        Ahmet Yılmaz
+                    </h5>
+                    <p id="drawerEmail"
+                       class="font-body-md text-body-md text-on-surface-variant">
+                        ahmet.y@example.com
+                    </p>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-label-sm font-label-sm text-outline mb-1 uppercase tracking-wider">
+                        Konu
+                    </label>
+                    <p id="drawerSubject"
+                       class="font-title-md text-title-md text-on-surface font-semibold">
+                        İş Teklifi
+                    </p>
+                </div>
+                <div>
+                    <label class="block text-label-sm font-label-sm text-outline mb-1 uppercase tracking-wider">
+                        Tarih
+                    </label>
+                    <p id="drawerDate"
+                       class="font-body-md text-body-md text-on-surface-variant">
+                        Bugün, 14:20
+                    </p>
+                </div>
+                <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/50">
+                    <label class="block text-label-sm font-label-sm text-outline mb-2 uppercase tracking-wider">
+                        Mesaj
+                    </label>
+                    <p id="drawerContent"
+                       class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-6 border-t border-outline-variant bg-surface-container-lowest">
+        <div class="flex gap-3">
+            <button type="button"
+                    class="flex-grow bg-primary text-on-primary px-6 py-3 rounded-lg font-label-lg text-label-lg font-bold hover:bg-surface-tint transition-all shadow-md flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">reply</span>
+                Yanıtla
+            </button>
+            <button type="button"
+                    class="p-3 border border-outline-variant rounded-lg hover:bg-error-container hover:text-error transition-all group">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openMessage(row) {
+        const id = row.dataset.id;
+        const name = row.dataset.name;
+        const email = row.dataset.email;
+        const subject = row.dataset.subject;
+        const content = row.dataset.content;
+        const date = row.dataset.date;
+
+        const drawer = document.getElementById('messageDrawer');
+        const overlay = document.getElementById('drawerOverlay');
+
+        document.getElementById('drawerName').innerText = name;
+        document.getElementById('drawerEmail').innerText = email;
+        document.getElementById('drawerSubject').innerText = subject;
+        document.getElementById('drawerContent').innerText = content;
+        document.getElementById('drawerDate').innerText = date;
+
+        const initials = name
+            .split(' ')
+            .map(word => word[0])
+            .join('')
+            .toUpperCase();
+
+        document.getElementById('drawerInitials').innerText = initials;
+
+        changeStatus(row, id, true);
+
+        overlay.classList.remove('hidden');
+
+        setTimeout(() => {
+            overlay.classList.add('opacity-100');
+            drawer.classList.remove('translate-x-full');
+        }, 10);
+    }
+
+    function closeDrawer() {
+        const drawer = document.getElementById('messageDrawer');
+        const overlay = document.getElementById('drawerOverlay');
+
+        drawer.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+
+    function changeStatus(row, id, isRead) {
+        fetch('/UserMessage/IsStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `id=${encodeURIComponent(id)}&isRead=${isRead}`
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Mesaj durumu güncellenemedi.');
+            }
+
+            return response.json();
+        })
+        .then(result => {
+            row.dataset.isRead = result.isRead.toString();
+
+            const badge = row.querySelector('.message-status');
+
+            if (!badge) return;
+
+            if (result.isRead) {
+                badge.innerText = 'Okundu';
+
+                badge.className =
+                    'message-status px-3 py-1 bg-surface-container-high ' +
+                    'text-on-surface-variant rounded-full text-label-sm ' +
+                    'font-label-sm border border-outline-variant';
+
+                row.querySelectorAll('.message-unread').forEach(element => {
+                    element.classList.remove('message-unread', 'font-bold');
+                });
+            } else {
+                badge.innerText = 'Okunmadı';
+
+                badge.className =
+                    'message-status px-3 py-1 bg-primary/10 text-primary ' +
+                    'rounded-full text-label-sm font-label-sm border border-primary/20';
+
+                row.querySelectorAll('.message-text').forEach(element => {
+                    element.classList.add('message-unread', 'font-bold');
+                });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+
+    function toggleStatus(row) {
+        const id = row.dataset.id;
+        const currentStatus = row.dataset.isRead === 'true';
+        const newStatus = !currentStatus;
+
+        changeStatus(row, id, newStatus);
+    }
+</script>

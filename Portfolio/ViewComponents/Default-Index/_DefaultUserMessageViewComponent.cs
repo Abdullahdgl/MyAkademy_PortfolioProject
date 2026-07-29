@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Portfolio.ViewComponents.Default_Index;
 
 namespace Portfolio.ViewComponents.Default_Index
 {
