@@ -1,0 +1,256 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<!-- Stiller & Hover Efektleri -->
+<style>
+    .dash-card {
+        border: none !important;
+        border-radius: 16px !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden;
+    }
+
+        .dash-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+        }
+
+    .icon-box {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .icon-box i {
+            font-size: 1.8rem !important;
+            color: #ffffff !important;
+        }
+
+    .dash-title {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px !important;
+    }
+
+    .dash-value {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        font-size: 1.75rem !important;
+        margin: 0;
+    }
+
+    /* Gradient Arka Planlar */
+    .bg-grad-blue {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    }
+
+    .bg-grad-purple {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+    }
+
+    .bg-grad-emerald {
+        background: linear-gradient(135deg, #10b981 0%, #047857 100%) !important;
+    }
+
+    .bg-grad-orange {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    }
+
+    /* Tablo ve Kart Düzenlemeleri */
+    .table-card {
+        border-radius: 16px !important;
+        border: none !important;
+    }
+
+    .quick-action-btn {
+        border-radius: 12px;
+        font-weight: 600;
+        padding: 12px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+    }
+
+        .quick-action-btn:hover {
+            transform: translateY(-2px);
+        }
+</style>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Karşılama Başlığı -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h3 class="fw-bold mb-1" style="font-weight: 700; color: #1e293b;">Hoş Geldin 👋</h3>
+                <p class="text-muted mb-0">Portfolyo yönetim panelinin genel durumunu buradan inceleyebilirsin.</p>
+            </div>
+        </div>
+
+        <!-- 4'lü İstatistik Kartları -->
+        <div class="row">
+            <!-- Projelerim (ProjectController) -->
+            <div class="col-md-3">
+                <a href="/Project/Index" class="text-decoration-none">
+                    <div class="card dash-card bg-grad-blue shadow-sm mb-4">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <p class="dash-title">Projelerim</p>
+                                    <h3 class="dash-value">@ViewBag.ProjectCount</h3>
+                                </div>
+                                <div class="icon-box">
+                                    <i class="la la-th-large"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Deneyimler (ExperienceController) -->
+            <div class="col-md-3">
+                <a href="/Experience/Index" class="text-decoration-none">
+                    <div class="card dash-card bg-grad-purple shadow-sm mb-4">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <p class="dash-title">Deneyimler</p>
+                                    <h3 class="dash-value">@ViewBag.ExperienceCount</h3>
+                                </div>
+                                <div class="icon-box">
+                                    <i class="la la-briefcase"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Gelen Mesajlar (UserMessageController) -->
+            <div class="col-md-3">
+                <a href="/UserMessage/Index" class="text-decoration-none">
+                    <div class="card dash-card bg-grad-emerald shadow-sm mb-4">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <p class="dash-title">Gelen Mesajlar</p>
+                                    <h3 class="dash-value">@ViewBag.MessageCount</h3>
+                                </div>
+                                <div class="icon-box">
+                                    <i class="la la-envelope"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Yeteneklerim (SkillController) -->
+            <div class="col-md-3">
+                <a href="/Skill/Index" class="text-decoration-none">
+                    <div class="card dash-card bg-grad-orange shadow-sm mb-4">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <p class="dash-title">Yeteneklerim</p>
+                                    <h3 class="dash-value">@ViewBag.SkillCount</h3>
+                                </div>
+                                <div class="icon-box">
+                                    <i class="la la-cog"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Alt İçerik: Son Mesajlar & Hızlı Eylemler -->
+        <div class="row mt-2">
+            <!-- Son Gelen Mesajlar Tablosu (UserMessageController) -->
+            <div class="col-md-8">
+                <div class="card table-card shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold m-0" style="font-weight: 700; color: #334155;">
+                            <i class="la la-envelope-o text-primary mr-1"></i> Son Gelen Mesajlar
+                        </h5>
+                        <a href="/UserMessage/Index" class="btn btn-sm btn-light font-weight-bold">Tümünü Gör</a>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead>
+                                    <tr class="text-muted" style="font-size: 0.85rem;">
+                                        <th>Gönderen</th>
+                                        <th>Konu</th>
+                                        <th>Tarih</th>
+                                        <th class="text-end">İşlem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.LastMessages != null)
+                                    {
+                                        foreach (var item in ViewBag.LastMessages)
+                                        {
+                                            <tr>
+                                                <td class="font-weight-bold">@item.SenderName</td>
+                                                <td>@item.Subject</td>
+                                                <td class="text-muted">@item.Date.ToString("dd MMM yyyy")</td>
+                                                <td class="text-end">
+                                                    <a href="/UserMessage/Detail/@item.Id" class="btn btn-sm btn-outline-primary">Oku</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted py-3">Henüz yeni mesaj bulunmuyor.</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hızlı İşlemler Paneli -->
+            <div class="col-md-4">
+                <div class="card table-card shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="fw-bold m-0" style="font-weight: 700; color: #334155;">
+                            <i class="la la-flash text-warning mr-1"></i> Hızlı İşlemler
+                        </h5>
+                    </div>
+                    <div class="card-body px-4 pb-4 d-flex flex-column gap-2">
+                        <a href="/Project/createproject" class="btn btn-primary quick-action-btn text-white">
+                            <i class="la la-plus-circle font-medium-3"></i> Yeni Proje Ekle
+                        </a>
+                        <a href="/Experience/create" class="btn btn-info quick-action-btn text-white">
+                            <i class="la la-briefcase font-medium-3"></i> Deneyim Ekle
+                        </a>
+                        <a href="/Skill/CreatSkill" class="btn btn-warning quick-action-btn text-white">
+                            <i class="la la-star font-medium-3"></i> Yetenek Ekle
+                        </a>
+                        <a href="/About/Index" class="btn btn-secondary quick-action-btn text-white">
+                            <i class="la la-user font-medium-3"></i> Hakkımda Bilgilerini Güncelle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

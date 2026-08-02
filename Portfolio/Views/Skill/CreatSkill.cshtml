@@ -4,24 +4,95 @@
     Layout = "~/Views/AdminLayout/Layout.cshtml";
 }
 
-<h1>CreatSkill</h1>
+<!-- Sadece Görsellik İçin Eklenen Stiller -->
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        border-radius: 16px !important;
+        padding: 2rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+        max-width: 600px !important;
+        margin-top: 1.5rem !important;
+    }
 
-<form method="post" class="glass-card">
-    <div class="form-group">
-        <label class="form-label">Yetenek Adı</label>
-        <input type="text" class="form-input" asp-for="Name" required>
+    .form-group {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .form-label {
+        display: block !important;
+        font-weight: 600 !important;
+        color: #334155 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .form-input {
+        width: 100% !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px !important;
+        border: 1px solid #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        transition: all 0.25s ease !important;
+        outline: none !important;
+    }
+
+        .form-input:focus {
+            background-color: #ffffff !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+        }
+
+    .form-actions {
+        margin-top: 1.5rem !important;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        border: none !important;
+        color: #ffffff !important;
+        padding: 0.75rem 1.75rem !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+        }
+</style>
+
+<div class="content">
+    <div class="container-fluid">
+
+        <h1>CreatSkill</h1>
+
+        <form method="post" class="glass-card">
+            <div class="form-group">
+                <label class="form-label">Yetenek Adı</label>
+                <input type="text" class="form-input" asp-for="Name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" style="cursor: pointer;">
+                    <input type="checkbox" asp-for="IsActive" style="width: 16px; height: 16px; accent-color: #3b82f6;" /> Durum
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-floppy-disk"></i> Kaydet
+                </button>
+            </div>
+        </form>
+
     </div>
-
-    <div class="form-group">
-        <label class="form-label">
-            <input type="checkbox" asp-for="IsActive" /> Durum
-        </label>
-    </div>
-
-
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">
-            <i class="fa-solid fa-floppy-disk"></i> Kaydet
-        </button>
-    </div>
-</form>
+</div>
