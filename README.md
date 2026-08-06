@@ -1,4 +1,4 @@
-# 🚀 ASP.NET Core MVC (.NET 10) Dinamik Portfolyo & Admin Yönetim Paneli
+# 🚀 ASP.NET Core MVC (.NET 8) Dinamik Portfolyo & Admin Yönetim Paneli
 
 M&Y Yazılım Eğitim Akademi Danışmanlık bünyesinde aldığım eğitim sürecinde, öğrendiklerimi pratiğe dökerek uçtan uca yönetilebilir full-stack bir portfolyo uygulaması geliştirdim.
 
@@ -8,7 +8,7 @@ Amacım sadece statik bir CV sayfası oluşturmak değil; arkasında esnek ve g�
 
 ## 🛠️ Mimari ve Teknik Detaylar
 
-* **Katmanlı Mimari:** ASP.NET Core MVC (.NET 10) standartlarına uygun, modüler ve temiz bir yapı kurgulandı.
+* **Katmanlı Mimari:** ASP.NET Core MVC (.NET 8) standartlarına uygun, modüler ve temiz bir yapı kurgulandı.
 * **EF Core & MSSQL:** Code-First yaklaşımı tercih edilerek veritabanı şeması Migration'lar ile yönetildi, ilişkisel veri yapısı oturtuldu.
 * **Güvenlik:** Yönetim paneline yetkisiz erişimleri engellemek adına Cookie tabanlı kimlik doğrulama (Authentication) mekanizması entegre edildi.
 * **Esnek Kontrolör Mimarisi:** 8 farklı dinamik modülün yönetimi için jenerik konfigürasyon tabanlı esnek bir yapı kuruldu.
@@ -41,7 +41,7 @@ Amacım sadece statik bir CV sayfası oluşturmak değil; arkasında esnek ve g�
 
 ## 💻 Kullanılan Teknoloji Yığını
 
-* **Backend & Framework:** ASP.NET Core MVC (.NET 8.00) │ C# │ LINQ Queries
+* **Backend & Framework:** ASP.NET Core MVC (.NET 8) │ C# │ LINQ Queries
 * **Veritabanı & ORM:** Entity Framework Core (Code-First) │ SQL Server (MSSQL)
 * **Güvenlik & Oturum:** Cookie Authentication │ Session Management
 * **Frontend & UI Components:** ViewComponent │ Bootstrap │ HTML5 / CSS3 │ jQuery
