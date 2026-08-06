@@ -41,7 +41,7 @@ Amacım sadece statik bir CV sayfası oluşturmak değil; arkasında esnek ve g�
 
 ## 💻 Kullanılan Teknoloji Yığını
 
-* **Backend & Framework:** ASP.NET Core MVC (.NET 10) │ C# │ LINQ Queries
+* **Backend & Framework:** ASP.NET Core MVC (.NET 8.00) │ C# │ LINQ Queries
 * **Veritabanı & ORM:** Entity Framework Core (Code-First) │ SQL Server (MSSQL)
 * **Güvenlik & Oturum:** Cookie Authentication │ Session Management
 * **Frontend & UI Components:** ViewComponent │ Bootstrap │ HTML5 / CSS3 │ jQuery
