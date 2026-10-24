@@ -7,7 +7,7 @@ namespace Portfolio.Data.Context
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("server=DESKTOP-7UIUM7T\\SQLEXPRESS; database=PortfolioDb; integrated security=true;trustServerCertificate=true;");
+			optionsBuilder.UseSqlServer("server=XXXXXXXXXX; database=PortfolioDb; integrated security=true;trustServerCertificate=true;");
 		}
 
 		public DbSet<About> Abouts { get; set; }
